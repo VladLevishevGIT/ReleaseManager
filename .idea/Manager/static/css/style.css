@@ -1,1 +1,5 @@
-/* Your custom styles */
+.tooltip-inner {
+    width:150px!important;
+    max-height:150px!important;
+    overflow-y:scroll
+}

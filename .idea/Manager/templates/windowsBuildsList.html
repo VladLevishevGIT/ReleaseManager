@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Release Manager</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="../static/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="../static/css/style.css" rel="stylesheet">
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="../static/js/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../static/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../static/js/mdb.min.js"></script>
+
+</head>
+
+<body>
+    <div class="row">
+        <!--Grid column-->
+        <div class="col-md-12 mb-4">
+            <div class="card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/img%20%2832%29.jpg);">
+                <div class="text-white text-center align-items-center rgba-black-strong py-5 px-4 rounded">
+                    <div>
+                        <h3 class="py-3 font-weight-bold">
+                            <strong>Chosen Build</strong>
+                        </h3>
+                        <p>
+                            <h4>Creation Date: {{chosen_build[0]}}</h4>
+                            <h4>Build Number: {{chosen_build[1]}}</h4>
+                            <h4>Revision: {{chosen_build[2]}}</h4>
+                            <h4>Content: {{chosen_build[3]}}</h4>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <!--Table-->
+            <table class="table table-hover table-striped table-bordered text-center">
+
+                <!--Table head-->
+                <thead  class="blue-grey lighten-4">
+                    <tr>
+                        <th style="width: 16.7%"><h4 class="font-weight-bold"><strong>Creation Date</strong></h4></th>
+                        <th style="width: 16.7%"><h4 class="font-weight-bold"><strong>Build Number</strong></h4></th>
+                        <th style="width: 16.6%"><h4 class="font-weight-bold"><strong>Revision</strong></h4></th>
+                        <th style="width: 50%"><h4 class="font-weight-bold"><strong>Content</strong></h4></th>
+                    </tr>
+                </thead>
+                <!--Table head-->
+
+                <!--Table body-->
+                <tbody>
+                {% for build in windowsBuilds %}
+                <tr>
+                        <td><h6 class="font-weight-bold"><strong>{{build[0]}}</strong></h6></td>
+                        <td><h6 class="font-weight-bold"><strong>{{build[1]}}</strong></h6></td>
+                        <td><h6 class="font-weight-bold"><strong>{{build[2]}}</strong></h6></td>
+                        <td><h6 class="font-weight-bold" style="white-space:pre-wrap; word-wrap:break-word"><strong>{{build[3]}}</strong></h6></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                <!--Table body-->
+
+            </table>
+        <!--Table-->
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</body>
+
+</html>

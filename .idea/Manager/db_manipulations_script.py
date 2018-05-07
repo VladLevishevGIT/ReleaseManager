@@ -1,28 +1,33 @@
 import psycopg2
 
 def create_table():
-    conn = psycopg2.connect("dbname='test_db' user='postgres' password='postgres123' host='localhost' port='5432'")
+    conn = psycopg2.connect("dbname='release_manager' user='postgres' password='postgres123' host='h9-ubu16-qa' port='5432'")
     cur = conn.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS windows_builds (number INTEGER, revision INTEGER)")
+    cur.execute("CREATE TABLE IF NOT EXISTS weekly_windows_builds (released_date TEXT, number INTEGER)")
     conn.commit()
     conn.close()
 
-def read_row():
-    conn = psycopg2.connect("dbname='test_db' user='postgres' password='postgres123' host='localhost' port='5432'")
+def read_recent_build():
+    conn = psycopg2.connect("dbname='release_manager' user='postgres' password='postgres123' host='h9-ubu16-qa' port='5432'")
     cur = conn.cursor()
     cur.execute("SELECT * FROM windows_builds")
-    row = cur.fetchall()
+    rows = cur.fetchall()
     conn.close()
-    return row
+    latest[1] = 0
+    for row in rows:
+        if row[1] < latest[1]:
+            latest = row
+    return latest
 
-def import_build(number, revision):
-    conn = psycopg2.connect("dbname='test_db' user='postgres' password='postgres123' host='localhost' port='5432'")
+def import_build(date, number):
+    conn = psycopg2.connect("dbname='release_manager' user='postgres' password='postgres123' host='h9-ubu16-qa' port='5432'")
     cur = conn.cursor()
-    cur.execute("INSERT INTO windows_builds VALUES (%s, %s)", (number, revision))
+    cur.execute("INSERT INTO weekly_windows_builds VALUES (%s, %s)", (date, number))
     conn.commit()
     conn.close
 
 # create_table()
 # import_build(1956, 25896)
 
-print(read_row())
+create_table()
+import_build("2018-04-29", 2269)
